@@ -107,6 +107,10 @@
     [self stopAnimation:NO];
 }
 
+- (void)continueAnimation {
+    [self stepToFrame:self.currentFrame andPlay:YES];
+}
+
 - (void)stopAnimation {
     [self stopAnimation:self.clearsAfterStop];
 }
