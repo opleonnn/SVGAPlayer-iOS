@@ -21,6 +21,7 @@
 @property (nonatomic, strong) CALayer *drawLayer;
 @property (nonatomic, strong) NSArray<SVGAAudioLayer *> *audioLayers;
 @property (nonatomic, strong) CADisplayLink *displayLink;
+@property (nonatomic, assign) NSInteger currentFrame;
 @property (nonatomic, copy) NSArray *contentLayers;
 @property (nonatomic, copy) NSDictionary<NSString *, UIImage *> *dynamicObjects;
 @property (nonatomic, copy) NSDictionary<NSString *, NSAttributedString *> *dynamicTexts;
@@ -30,6 +31,7 @@
 @property (nonatomic, assign) NSRange currentRange;
 @property (nonatomic, assign) BOOL forwardAnimating;
 @property (nonatomic, assign) BOOL reversing;
+@property (nonatomic, assign) BOOL isPlaying;
 
 @property (nonatomic, assign) CFTimeInterval animationStartTimestamp;
 
@@ -538,8 +540,10 @@
     }
     if (speed > 0) {
         _speed = speed;
-        [self pauseAnimation];
-        [self stepToFrame:self.currentFrame andPlay:YES];
+        if (self.isPlaying) {
+            [self pauseAnimation];
+            [self stepToFrame:self.currentFrame andPlay:YES];
+        }
     } else {
         NSLog(@"无效值");
     }
