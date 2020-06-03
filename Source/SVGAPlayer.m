@@ -21,6 +21,7 @@
 @property (nonatomic, strong) CALayer *drawLayer;
 @property (nonatomic, strong) NSArray<SVGAAudioLayer *> *audioLayers;
 @property (nonatomic, strong) CADisplayLink *displayLink;
+@property (nonatomic, assign) NSInteger currentFrame;
 @property (nonatomic, copy) NSArray *contentLayers;
 @property (nonatomic, copy) NSDictionary<NSString *, UIImage *> *dynamicObjects;
 @property (nonatomic, copy) NSDictionary<NSString *, NSAttributedString *> *dynamicTexts;
@@ -84,6 +85,7 @@
         NSLog(@"videoItem FPS could not be 0！");
         return;
     }
+    self.isPlaying = YES;
     self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(next)];
     self.displayLink.frameInterval = 60 / self.videoItem.FPS / self.speed;
     [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
@@ -124,6 +126,7 @@
     }
     [self clearAudios];
     self.displayLink = nil;
+    self.isPlaying = NO;
 }
 
 - (void)clear {
@@ -160,6 +163,7 @@
             NSLog(@"videoItem FPS could not be 0！");
             return;
         }
+        self.isPlaying = YES;
         self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(next)];
         self.displayLink.frameInterval = 60 / self.videoItem.FPS / self.speed;
         [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
