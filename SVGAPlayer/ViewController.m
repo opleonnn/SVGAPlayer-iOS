@@ -24,7 +24,7 @@ static SVGAParser *parser;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.aPlayer.delegate = self;
-    self.aPlayer.loops = 1;
+    self.aPlayer.loops = 0;
     self.aPlayer.clearsAfterStop = YES;
     parser = [[SVGAParser alloc] init];
     [self onChange:nil];
@@ -106,11 +106,13 @@ static SVGAParser *parser;
 }
 
 - (IBAction)onRetreatButton:(UIButton *)sender {
-    
+    self.aPlayer.speed -= 0.2;
+    NSLog(@"current speed:%f", self.aPlayer.speed);
 }
 
 - (IBAction)onForwardButton:(UIButton *)sender {
-    
+    self.aPlayer.speed += 0.2;
+    NSLog(@"current speed:%f", self.aPlayer.speed);
 }
 
 

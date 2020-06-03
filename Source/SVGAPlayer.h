@@ -29,6 +29,9 @@ typedef void(^SVGAPlayerDynamicDrawingBlock)(CALayer *contentLayer, NSInteger fr
 @property (nonatomic, assign) IBInspectable BOOL clearsAfterStop;
 @property (nonatomic, copy) NSString *fillMode;
 
+/// 速度控制，默认值为 1，赋非正数值无效
+@property (nonatomic, assign) IBInspectable CGFloat speed;
+
 - (void)startAnimation;
 - (void)startAnimationWithRange:(NSRange)range reverse:(BOOL)reverse;
 - (void)pauseAnimation;

@@ -32,6 +32,8 @@
 @property (nonatomic, assign) BOOL forwardAnimating;
 @property (nonatomic, assign) BOOL reversing;
 
+@property (nonatomic, assign) CFTimeInterval animationStartTimestamp;
+
 @end 
 
 @implementation SVGAPlayer
@@ -59,6 +61,7 @@
 
 - (void)initPlayer {
     self.contentMode = UIViewContentModeTop;
+    self.speed = 1.0;
     self.clearsAfterStop = YES;
 }
 
@@ -83,7 +86,7 @@
         return;
     }
     self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(next)];
-    self.displayLink.frameInterval = 60 / self.videoItem.FPS;
+    self.displayLink.frameInterval = 60 / self.videoItem.FPS / self.speed;
     [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     self.forwardAnimating = !self.reversing;
 }
@@ -155,7 +158,7 @@
             return;
         }
         self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(next)];
-        self.displayLink.frameInterval = 60 / self.videoItem.FPS;
+        self.displayLink.frameInterval = 60 / self.videoItem.FPS / self.speed;
         [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     }
 }
@@ -521,6 +524,19 @@
         _dynamicDrawings = @{};
     }
     return _dynamicDrawings;
+}
+
+- (void)setSpeed:(CGFloat)speed {
+    if (speed < 1) {
+        speed = round(speed * 100) / 100;
+    }
+    if (speed > 0) {
+        _speed = speed;
+        [self pauseAnimation];
+        [self stepToFrame:self.currentFrame andPlay:YES];
+    } else {
+        NSLog(@"无效值");
+    }
 }
 
 @end
