@@ -21,7 +21,6 @@
 @property (nonatomic, strong) CALayer *drawLayer;
 @property (nonatomic, strong) NSArray<SVGAAudioLayer *> *audioLayers;
 @property (nonatomic, strong) CADisplayLink *displayLink;
-@property (nonatomic, assign) NSInteger currentFrame;
 @property (nonatomic, copy) NSArray *contentLayers;
 @property (nonatomic, copy) NSDictionary<NSString *, UIImage *> *dynamicObjects;
 @property (nonatomic, copy) NSDictionary<NSString *, NSAttributedString *> *dynamicTexts;

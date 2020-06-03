@@ -28,6 +28,7 @@ typedef void(^SVGAPlayerDynamicDrawingBlock)(CALayer *contentLayer, NSInteger fr
 @property (nonatomic, assign) IBInspectable int loops;
 @property (nonatomic, assign) IBInspectable BOOL clearsAfterStop;
 @property (nonatomic, copy) NSString *fillMode;
+@property (nonatomic, assign) NSInteger currentFrame;
 @property (nonatomic, assign) BOOL isPlaying;
 
 /// 速度控制，默认值为 1，赋非正数值无效
