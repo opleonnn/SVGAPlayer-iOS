@@ -88,7 +88,7 @@
     }
     self.isPlaying = YES;
     self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(next)];
-    self.displayLink.frameInterval = 60 / self.videoItem.FPS / self.speed;
+    self.displayLink.frameInterval = round(60 / (CGFloat)self.videoItem.FPS / self.speed);
     [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     self.forwardAnimating = !self.reversing;
 }
@@ -166,7 +166,7 @@
         }
         self.isPlaying = YES;
         self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(next)];
-        self.displayLink.frameInterval = 60 / self.videoItem.FPS / self.speed;
+        self.displayLink.frameInterval = round(60 / (CGFloat)self.videoItem.FPS / self.speed);
         [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     }
 }
