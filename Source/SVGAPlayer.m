@@ -385,11 +385,11 @@
     }
     [self update];
     id delegate = self.delegate;
-    if (delegate != nil && [delegate respondsToSelector:@selector(svgaPlayerDidAnimatedToFrame:)]) {
-        [delegate svgaPlayerDidAnimatedToFrame:self.currentFrame];
+    if (delegate != nil && [delegate respondsToSelector:@selector(svgaPlayer:didAnimatedToFrame:)]) {
+        [delegate svgaPlayer:self didAnimatedToFrame:self.currentFrame];
     }
-    if (delegate != nil && [delegate respondsToSelector:@selector(svgaPlayerDidAnimatedToPercentage:)] && self.videoItem.frames > 0) {
-        [delegate svgaPlayerDidAnimatedToPercentage:(CGFloat)(self.currentFrame + 1) / (CGFloat)self.videoItem.frames];
+    if (delegate != nil && [delegate respondsToSelector:@selector(svgaPlayer:didAnimatedToPercentage:)] && self.videoItem.frames > 0) {
+        [delegate svgaPlayer:self didAnimatedToPercentage:(CGFloat)(self.currentFrame + 1) / (CGFloat)self.videoItem.frames];
     }
 }
 

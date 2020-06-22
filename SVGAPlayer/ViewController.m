@@ -117,7 +117,7 @@ static SVGAParser *parser;
 
 
 #pragma - mark SVGAPlayer Delegate
-- (void)svgaPlayerDidAnimatedToPercentage:(CGFloat)percentage {
+- (void)svgaPlayer:(SVGAPlayer *)player didAnimatedToPercentage:(CGFloat)percentage {
     self.aSlider.value = percentage;
 }
 
